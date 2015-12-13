@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # API
   namespace :api, defaults: { format: :json } do
     resources :sessions, only: :create
-    resources :posts, only: :index
+    resources :posts
   end
   
   root 'posts#index'

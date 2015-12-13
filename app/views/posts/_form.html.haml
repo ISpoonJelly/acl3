@@ -1,0 +1,28 @@
+= form_for @post do |f|
+  = f.label :post
+  %br/
+  = f.text_field :post
+  
+  %br/
+  
+  = f.label :tags
+  %br/
+  = f.text_field :tags
+  
+  %br/
+  
+  = f.label :post_type
+  %br/
+  = f.text_field :post_type
+  
+  %br/
+
+  = f.label :attachment
+  %br/
+  = f.text_field :attachment
+  
+  %br/
+  
+  = f.submit
+  or
+  = link_to 'cancel', :back

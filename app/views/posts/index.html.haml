@@ -1,0 +1,9 @@
+%h1 Posts
+- if @post.present?
+  %ul
+    - @post.each do |post|
+      %li= link_to post.post, post
+- else
+  No posts
+
+%p= link_to 'Add post', new_post_path

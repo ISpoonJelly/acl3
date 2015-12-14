@@ -10,6 +10,15 @@ class CreateUsers < ActiveRecord::Migration
       t.string :avatar
       t.date :date_of_birth
 
+      #Foreign Keys
+      t.integer :post_id
+      t.integer :comment_id
+      t.integer :message_id
+      t.integer :friendship_id
+      t.integer :friend_id
+      t.integer :inverse_friendship_id
+      t.integer :inverse_friend_id
+
       t.timestamps
     end
     

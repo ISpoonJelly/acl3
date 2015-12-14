@@ -8,17 +8,13 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   
   # Relations
-  has_many :posts, foreign_key: 'id'
-  has_many :comments, foreign_key: 'id'
-  has_many :messages, foreign_key: 'id'
-  has_many :friendships, foreign_key: 'id'
-  has_many :friends, :through => :friendships, foreign_key: 'id'
-  has_many :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_friendships, :source => :user, foreign_key: 'id'
-  has_many :follow_posts, foreign_key: 'id'
-  has_many :channels, foreign_key: 'id'
-  has_many :invite_to_channels, foreign_key: 'id'
-  has_many :channel_messages, foreign_key: 'id'
+  has_many :posts
+  has_many :comments
+  has_many :messages
+  has_many :friendships
+  has_many :friends, :through => :friendships
+  has_many :inverse_friendships, :class_name => "Friendship"
+  has_many :inverse_friends, :through => :inverse_friendships, :source => :user
   
   # Callbacks
   before_create -> { self.token = SecureRandom.hex }, unless: :token?

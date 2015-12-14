@@ -15,6 +15,7 @@ class Api::PostsController < Api::BaseController
 	  
 	def create
     	@post = Post.create(post_params)
+        current_user.posts << @post
 
     	respond_with @post
 	end

@@ -2,7 +2,7 @@
 - if @post.present?
   %ul
     - @post.each do |post|
-      %li= link_to post.post, post
+      %li= link_to post.body, post
 - else
   No posts
 

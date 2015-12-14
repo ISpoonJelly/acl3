@@ -14,10 +14,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :post_id
       t.integer :comment_id
       t.integer :message_id
-      t.integer :friendship_id
-      t.integer :friend_id
-      t.integer :inverse_friendship_id
-      t.integer :inverse_friend_id
+      t.integer :followed_id
 
       t.timestamps
     end

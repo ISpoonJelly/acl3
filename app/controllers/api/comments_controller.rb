@@ -10,8 +10,13 @@ class Api::CommentsController < Api::BaseController
         @post = Post.find(params[:postId])
         @post.comments << @comment
         @post.commentCount += 1
+        current_user.comments << @comment
 
-      	respond_with @post
+      	if @comment.save
+        render :status => "200", :json => {:status => "success"}.to_json
+      else
+        render :status => "400", :json => {:status => "failure"}.to_json
+      end
     end
 
 protected

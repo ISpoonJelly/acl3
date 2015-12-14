@@ -5,6 +5,7 @@ class CreatePosts < ActiveRecord::Migration
     	t.string :tags
     	t.integer :likes
     	t.string :attachment
+    	t.integer :user_id
       	t.timestamps null: false
     end
   end

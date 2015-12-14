@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :city
       t.string :country
       t.string :avatar
+      t.integer :post_id
       t.date :date_of_birth
 
       t.timestamps

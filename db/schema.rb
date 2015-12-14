@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112114952) do
-
-  create_table "channel_messages", force: true do |t|
-    t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "channels", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20151112105248) do
 
   create_table "comments", force: true do |t|
     t.string   "text"
@@ -48,12 +36,6 @@ ActiveRecord::Schema.define(version: 20151112114952) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "invite_to_channels", force: true do |t|
-    t.boolean  "accept"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "messages", force: true do |t|
     t.string   "text"
     t.datetime "created_at", null: false
@@ -63,8 +45,9 @@ ActiveRecord::Schema.define(version: 20151112114952) do
   create_table "posts", force: true do |t|
     t.string   "post"
     t.string   "tags"
-    t.string   "post_type"
+    t.integer  "likes"
     t.string   "attachment"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,6 +60,7 @@ ActiveRecord::Schema.define(version: 20151112114952) do
     t.string   "city"
     t.string   "country"
     t.string   "avatar"
+    t.integer  "post_id"
     t.date     "date_of_birth"
     t.datetime "created_at"
     t.datetime "updated_at"

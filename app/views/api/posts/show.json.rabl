@@ -1,2 +1,2 @@
 object @post => nil
-attributes :id, :post, :tags, :likes
+attributes :id, :post, :tags, :likes, :comments

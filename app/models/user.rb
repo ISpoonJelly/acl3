@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   
   # Relations
-  has_many :posts, foreign_key: 'id'
+  has_many :posts
   has_many :comments, foreign_key: 'id'
   has_many :messages, foreign_key: 'id'
   has_many :friendships, foreign_key: 'id'

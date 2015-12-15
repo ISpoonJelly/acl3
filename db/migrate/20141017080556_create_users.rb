@@ -12,6 +12,7 @@ class CreateUsers < ActiveRecord::Migration
 
       #Foreign Keys
       t.integer :post_id
+      t.integer :destination_post_id
       t.integer :comment_id
       t.integer :message_id
       t.integer :followed_id

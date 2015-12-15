@@ -9,9 +9,11 @@ class User < ActiveRecord::Base
   
   # Relations
   has_many :posts
+  has_many :destination_posts, :class_name => 'Post', :foreign_key => 'destination_id'
   has_many :comments
   has_many :messages
-  has_many :followed, :class_name => "User"
+  has_many :followers, :class_name => 'Followings', :foreign_key => 'user_id'
+  has_many :following, :class_name => 'Followings', :foreign_key => 'follower_id'
   
   # Callbacks
   before_create -> { self.token = SecureRandom.hex }, unless: :token?

@@ -14,14 +14,18 @@ class Api::PostsController < Api::BaseController
   	end
 	  
 	def create
-    	@post = Post.create(post_params)
-        current_user.posts << @post
+    	@post = Post.create(:user => User.first, :body => params[:body])
+        @user = User.find_by_id(params[:destination])
+        unless @user.nil?
+            User.find(params[:destination]).destination_posts << @post
+        end
+        User.first.posts << @post
 
     	respond_with @post
 	end
 
 protected
   def post_params
-    params.require(:post).permit(:body, :tags, :likes)
+    params.require(:post).permit(:body, :destination)
   end
 end

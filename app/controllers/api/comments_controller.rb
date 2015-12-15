@@ -14,10 +14,10 @@ class Api::CommentsController < Api::BaseController
         @post.commentCount += 1
         @post.save
         current_user.comments << @comment
-        render :status => "200", :json => {:status => "success"}.to_json
+        respond_with @post
+        # render :status => "200", :json => {:status => "success"}.to_json
       else
         render :status => "400", :json => {:status => "failure"}.to_json
       end
     end
-
 end

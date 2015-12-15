@@ -11,73 +11,56 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151112114952) do
-
-  create_table "channel_messages", force: true do |t|
-    t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "channels", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20151215000854) do
 
   create_table "comments", force: true do |t|
     t.string   "text"
+    t.integer  "post_id",    null: false
+    t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "experienced_users", force: true do |t|
-    t.string   "experience"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "follow_posts", force: true do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "friendships", force: true do |t|
-    t.boolean  "accept"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "invite_to_channels", force: true do |t|
-    t.boolean  "accept"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "followings", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "follower_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "messages", force: true do |t|
-    t.string   "text"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "text",        null: false
+    t.integer  "user_id",     null: false
+    t.integer  "receiver_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "posts", force: true do |t|
-    t.string   "post"
-    t.string   "tags"
-    t.string   "post_type"
-    t.string   "attachment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "body",                       null: false
+    t.integer  "likes",          default: 0
+    t.integer  "commentCount",   default: 0
+    t.integer  "comment_id"
+    t.integer  "user_id",                    null: false
+    t.integer  "destination_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: true do |t|
     t.string   "name"
-    t.string   "email",              null: false
-    t.string   "encrypted_password", null: false
+    t.string   "email",               null: false
+    t.string   "encrypted_password",  null: false
     t.string   "gender"
     t.string   "city"
     t.string   "country"
     t.string   "avatar"
     t.date     "date_of_birth"
+    t.integer  "post_id"
+    t.integer  "destination_post_id"
+    t.integer  "comment_id"
+    t.integer  "message_id"
+    t.integer  "followed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "token"

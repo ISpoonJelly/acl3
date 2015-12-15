@@ -9,6 +9,10 @@ class Api::UsersController < Api::BaseController
 	def new
 	    @user = User.new
 	end
+
+	def show
+		respond_with @user = User.find(params[:id])
+	end
 	  
 	def create
         puts "the password is -> " + params[:password]

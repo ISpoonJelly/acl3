@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   
   # Relations
   has_many :posts
-  has_many :destination_posts, :class_name => 'Post', :foreign_key => 'destination_id'
+  has_many :destination_posts, :class_name => 'Post', :foreign_key => 'destination_post_id'
   has_many :comments
   has_many :messages
   has_many :followers, :class_name => 'Followings', :foreign_key => 'user_id'

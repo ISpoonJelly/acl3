@@ -6,12 +6,13 @@ class Api::CommentsController < Api::BaseController
   	end
 	  
     def create
-      @comment = Comment.new(comments_params)
-      @post = Post.find(params[:postId])
+      @comment = Comment.new(:text => params[:text], :user => current_user, :post_id => params[:post_id])
+      @post = Post.find(params[:post_id])
 
     	if @comment.save
-        @post.comments << @comment
+        current_user.comments << @comment
         @post.commentCount += 1
+        @post.save
         current_user.comments << @comment
         render :status => "200", :json => {:status => "success"}.to_json
       else
@@ -19,8 +20,4 @@ class Api::CommentsController < Api::BaseController
       end
     end
 
-protected
-  def comments_params
-    params.require(:comment).permit(:text)
-  end
 end

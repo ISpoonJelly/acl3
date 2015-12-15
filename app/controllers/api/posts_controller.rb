@@ -1,5 +1,5 @@
 class Api::PostsController < Api::BaseController
-    #before_action :authenticate_user!
+    before_action :authenticate_user!, only: [:create]
     
     def index
         respond_with @post = Post.all
@@ -14,12 +14,12 @@ class Api::PostsController < Api::BaseController
   	end
 	  
 	def create
-    	@post = Post.create(:user => User.first, :body => params[:body])
+    	@post = Post.create(:user => current_user, :body => params[:body])
         @user = User.find_by_id(params[:destination])
         unless @user.nil?
             User.find(params[:destination]).destination_posts << @post
         end
-        User.first.posts << @post
+        current_user.posts << @post
 
     	respond_with @post
 	end
